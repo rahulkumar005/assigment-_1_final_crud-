@@ -1,0 +1,38 @@
+package com.greycampus;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class InsertOperation {
+	  
+      
+	public void insert(CreateCustomerDetails customer) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();
+		String query="INSERT INTO CUSTOMER_DETAILS (CID,FIRSTNAME,LASTNAME,STREET,CITY,STATE,ZIPCODE,PRODUCTNAME,CREATEDON,CREATEDBY) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		CreateConnection createConnection = new CreateConnection();
+		Connection con=createConnection.getconnection();
+		try {
+			PreparedStatement prepareStatement = con.prepareStatement(query);
+			prepareStatement.setInt(1, customer.getCid());
+			prepareStatement.setString(2,customer.getFirstname());
+			prepareStatement.setString(3,customer.getLastname());
+			prepareStatement.setString(4,customer.getStreet());
+			prepareStatement.setString(5,customer.getCity());
+			prepareStatement.setString(6,customer.getState());
+			prepareStatement.setInt(7,customer.getZipcode());
+			prepareStatement.setString(8,customer.getProductname());
+			prepareStatement.setDate(3,date);
+			prepareStatement.setString(3,customer.getLastname());
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

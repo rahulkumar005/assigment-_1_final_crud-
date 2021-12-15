@@ -1,0 +1,55 @@
+package com.greycampus;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Date;
+
+public class InsertOperation {
+	  private static Date simpleDateFormat() {
+		  long millis=System.currentTimeMillis();
+		  java.sql.Date date= new java.sql.Date(millis);
+		  return date;
+		  
+	  }
+      
+	public void insert(CreateCustomerDetails customer) {
+		
+		String query="INSERT INTO CUSTOMER_DETAILS (CID,FIRSTNAME,LASTNAME,STREET,CITY,STATE,ZIPCODE,PRODUCTNAME,CREATEDON,CREATEDBY) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		CreateConnection createConnection = new CreateConnection();
+		Connection con=createConnection.getconnection();
+		PreparedStatement prepareStatement=null;
+		try {
+		    prepareStatement = con.prepareStatement(query);
+			prepareStatement.setInt(1,001);
+			prepareStatement.setString(2,"aman");
+			prepareStatement.setString(3,"kumar");
+			prepareStatement.setString(4,"new colony");
+			prepareStatement.setString(5,"bundelkhand");
+			prepareStatement.setString(6,"UP");
+			prepareStatement.setInt(7,34526);
+			prepareStatement.setString(8,"PARKER PEN");
+			prepareStatement.setDate(9,simpleDateFormat());;
+			prepareStatement.setString(3,"RAM MOHAN");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prepareStatement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

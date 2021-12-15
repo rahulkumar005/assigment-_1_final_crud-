@@ -1,0 +1,57 @@
+package com.greycampus;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Updatedata {
+	  private static Date simpleDateFormat() {
+		  long millis=System.currentTimeMillis();
+		  java.sql.Date date= new java.sql.Date(millis);
+		  return date;
+	  }
+	public void update() {
+		String query="update CUSTOMER_DETAILS (FIRSTNAME=?,LASTNAME=?,City=?,UPDATEDON=?,UPDATEDBY=?) where CID=002";
+		
+		PreparedStatement prepareStatement=null;
+		Connection createConnection = new Connection();
+		Connection con=createConnection.getconnection();
+		
+		
+		try {
+			prepareStatement= con.prepareStatement(query);
+			prepareStatement.setString(1,"ram");
+			prepareStatement.setString(2,"singh");
+			prepareStatement.setString(3,"ayodhya");
+			prepareStatement.setDate(4,simpleDateFormat());
+			prepareStatement.setString(5,"suresh");
+			int count = prepareStatement.executeUpdate();
+			if(count!=0) {
+			System.out.println(count+"customer data updated");
+			}else {
+				System.out.println("customer data not updated");
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				prepareStatement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+}

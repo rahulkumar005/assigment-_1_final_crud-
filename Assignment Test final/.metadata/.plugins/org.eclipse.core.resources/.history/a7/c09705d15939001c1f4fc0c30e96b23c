@@ -1,0 +1,44 @@
+package com.greycampus;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Deletedata {
+	public void delete() {
+		String query="delete from CUSTOMER_DETAILS where CID=?";
+		Connection createConnection = new Connection();
+		Connection con = createConnection.getconnection();
+		PreparedStatement prepareStatement = null;
+		try {
+		    prepareStatement = con.prepareStatement(query);
+			prepareStatement.setInt(1,001);
+			int count = prepareStatement.executeUpdate();
+			if(count!=0) {
+			System.out.println("data deleted");
+			}else {
+				System.out.println("data not deleted");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				prepareStatement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+
+}

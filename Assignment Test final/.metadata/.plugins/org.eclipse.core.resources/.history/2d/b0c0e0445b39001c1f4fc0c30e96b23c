@@ -1,0 +1,53 @@
+package com.greycampus;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class SelectData {
+	public void Select() {
+		String query="select * from CUSTOMER_DETAILS";
+		Connection createConnection = new Connection();
+		Connection con = createConnection.getconnection();
+		PreparedStatement prepareStatement = null;
+		try {
+			 prepareStatement= con.prepareStatement(query);
+			 ResultSet result = prepareStatement.executeQuery();
+			 while(result.next()) {
+				 System.out.println(result.getString(1));
+				 System.out.println(result.getString(2));
+				 System.out.println(result.getString(3));
+				 System.out.println(result.getString(4));
+				 System.out.println(result.getString(5));
+				 System.out.println(result.getString(6));
+				 System.out.println(result.getString(7));
+				 System.out.println(result.getString(8));
+				 System.out.println(result.getString(9));
+				 System.out.println(result.getString(10));
+				 System.out.println(result.getString(11));
+				 System.out.println(result.getString(12));			 
+			 }
+			 System.out.println("ALL DATA RETRIEVED");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				prepareStatement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

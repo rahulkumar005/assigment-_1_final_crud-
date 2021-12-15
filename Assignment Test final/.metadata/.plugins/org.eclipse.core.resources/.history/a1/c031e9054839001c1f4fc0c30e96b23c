@@ -1,0 +1,13 @@
+package com.greycampus;
+
+import java.sql.Connection;
+
+public class InsertOperation {
+	public void insert(CreateCustomerDeatails customer) {
+		String query="INSERT INTO CUSTOMER_DETAILS (CID,FIRSTNAME,LASTNAME,STREET,CITY,STATE,ZIPCODE,PRODUCTNAME,CREATEDON,CREATEDBY) VALUES()"
+		CreateConnection createConnection = new CreateConnection();
+		Connection con=createConnection.getconnection();
+		con.prepareStatement();
+	}
+
+}
